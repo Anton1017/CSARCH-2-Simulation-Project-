@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Anton1017/CSARCH-2-Somilation-Project-/issues"
   },
-  "homepage": "https://github.com/Anton1017/CSARCH-2-Somilation-Project-#readme"
+  "homepage": "https://github.com/Anton1017/CSARCH-2-Somilation-Project-#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
