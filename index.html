@@ -4,9 +4,83 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
-        <title>Hello World Simple App</title>
+        <title>CSARCH 2 Simulation Project</title>
     </head>
     <body>
-        <div>Hello World!</div>
+        <div>
+            <h3>CSARCH 2 Simulation Project - Block Set Associate MRU</h3>
+            <h4>Members</h4>
+            <p>Moraña, Anton Louis </p>
+            <p>Go, Ryan Jefferson</p>
+            <p>Uy, Shane</p>
+            <p>Ong, Ben Kennard</p>
+        </div>
+        <div id ="form">
+            <form>
+                <table>
+                    <tr>
+                        <td><label for="block_size">Block Size</label></td>
+                        <td><input type="number" min="1" name="block_size" id="block_size"> </td>
+                    </tr>
+                    <tr>
+                        <td><label for="set_size">Set Size</label></td>
+                        <td><input type="number" min="1" name="set_size" id="set_size"> </td>
+                    </tr>
+                    <tr>
+                        <td><label for="MM_memory_size">Main Memory memory size</label></td>
+                        <td><input type="number" min="1" name="MM_memory_size" id="MM_memory_size"> </td>
+                        <td>
+                            <select id="type">
+                                <option value="blocks" selected>Block
+                                </option>
+                                <option value="words">Word</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="cache_memory_size">Cache Memory Size</label></td>
+                        <td><input type="number" min="1" name="cache_memory_size" id="cache_memory_size"> </td>
+                        <td>
+                            <select id="type">
+                                <option value="blocks" selected>Block
+                                </option>
+                                <option value="words">Word</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="cache_cycle_time">Cache Cycle Time</label></td>
+                        <td><input type="number" min="1" value="1"name="cache_cycle_time" id="cache_cycle_time"> </td>
+                    </tr>
+                    <tr>
+                        <td><label for="memory_cycle_time">Memory Cycle Time</label></td>
+                        <td><input type="number" min="1" value="10"name="memory_cycle_time" id="memory_cycle_time"> </td>
+                    </tr>
+                    <tr>
+                        <td><lavel>Read Policy</label></td>
+                        <td>
+                            <select id="read_policy">
+                                <option value="Non Load Through" selected>No-Load Through
+                                </option>
+                                <option value="Load Through">Load Through</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="program_flow">Sequence of data for flow (add space between number)</label></td>
+                        <td><input type="text"name="program_flow" id="program_flow"> </td>
+                    </tr>
+    
+                    <tr>
+                        <td colspan="3">
+                            <button id="submit">Submit</button>
+                        </td>
+                        
+                    </tr>
+                </table>
+            </form>
+
+
+        </div>
     </body>
 </html>
