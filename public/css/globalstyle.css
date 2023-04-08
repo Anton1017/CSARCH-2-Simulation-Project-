@@ -1,0 +1,792 @@
+* {
+	box-sizing: border-box;
+	margin: 0px;
+	padding: 0px;
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+hr{
+	border-color: #ffd7b7;
+}
+
+
+a {
+	transition: 0.2s;
+	color: gray;
+	text-decoration: none;
+}
+
+a:hover {
+	transition: 0.2s;
+	color: #ff7200;
+}
+
+p {
+	word-break: break-all;
+	white-space: normal;
+}
+
+button:hover
+{
+	cursor: pointer;
+}
+
+body{
+	background-size: cover;
+	background-color: #ffb787;
+	min-height: 100vh;
+}
+
+textarea {
+	resize: none;
+	color: black !important;
+}
+
+input[type="text"],input[type="search"],input[type="email"],input[type="password"],input[type="file"], input[type="number"], textarea {
+	padding: 12px;
+	color: gray;
+	border-radius: 10px;
+	border: 2px solid #ccc;
+	letter-spacing: 1px;
+	font-size: 12px;
+	height: 20px;
+	width: 300px;
+}
+
+input[type="file"] {
+	background-color: white;
+	padding: 5px;
+	height: 100%;
+	width: 300px;
+	font-size: 12px;
+}
+
+input[type=file]::file-selector-button {
+	background-color: #ff7200;
+	color: white;
+	border: 0px;
+	padding: 8px;
+	transition: 0.2s;
+	text-decoration: none;
+	border-radius: 10px;
+	font-size: 15px;
+}
+
+input[type=file]::file-selector-button:hover {
+	background-color: gray;
+	transition: 0.2s;
+	cursor: pointer;
+}
+
+input[type="submit"], button {
+	transition: 0.3s;
+	padding: 12px;
+	color: white;
+	font-size: 18px;
+	background-color: #ff7200;
+	border: none;
+	border-radius: 10px;
+}
+
+input[type="submit"]:hover {
+	transition: 0.3s;
+	background-color: gray;
+	cursor: pointer;
+}
+
+img {
+	object-fit: cover;
+}
+
+#slideshow {
+	position: absolute;
+	background-size: cover;
+	background-color: #ffb787;
+	width: 100vw;
+	height:100vh;
+	transition: opacity 1s;
+}
+
+#slideshow2 {
+	background-size: cover;
+	background-color: #ffb787;
+	min-height: 100vh;
+	position: absolute;
+	width: 100vw;
+	height:100vh;
+	transition: opacity 1s;
+}
+
+.format_center {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+}
+
+.login_text {
+	/*letter-spacing: 3px;*/
+	font-size: 15px;
+	color: gray;
+}
+
+.upper_bar {
+	min-height: 60px;
+	position: sticky;
+	top: 0px;
+	z-index: 10;
+	background-color: white;
+}
+
+.search-result{
+	position: absolute;
+	width: 23%;
+	left: 300px;
+	top: 60px;
+	background-color: transparent;
+	max-height: 75vh;
+	overflow-y: scroll;
+}
+
+b{
+	font-size: 14px;
+}
+
+.post-searchresult, .profile-searchresult{
+	width: 100%;
+	max-width: 100%;
+	background-color: white;
+	color: #ff7200;
+	padding: 5px;
+	border: 2px solid #ff7200 !important;
+	border-top: 0px !important;
+	border-radius: 0px;
+	font-size: 10px;
+	text-align: left;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+
+.post-searchresult:hover, .profile-searchresult:hover{
+	background-color: #ff7200;
+	color: white;
+}
+
+
+.error{
+	color: red;
+}
+
+.success{
+	color: green;
+}
+
+.status_msg{
+	height: auto;
+	width: auto;
+	margin: 8px;
+	font-size: 16px;
+}
+
+.login_container {
+	
+	position: relative;
+	padding-top: 8vh;
+	height: 92vh;
+}
+
+.login_container h2 {
+	margin-top: 20px;
+	margin-bottom: 20px;
+	font-size: 20px;
+}
+
+.login_content {
+	margin: auto;
+	padding: 50px;
+	padding-top: 30px;
+	padding-bottom: 25px;
+	height: auto;
+	max-width: 450px;
+	margin-bottom: 0px;
+	background-color: white;
+	border-radius: 20px;
+}
+
+.main_container {
+	position: relative;
+}
+
+
+.main_content, .comments, .main_content_editprofile 
+{
+	margin: 30px auto;
+	padding: 50px;
+	max-width: 850px;
+	margin-bottom: 0px;
+	background-color: #fffae8;
+	overflow: hidden;
+}
+
+.post-thread, .main_content_profile
+{
+	margin: 30px auto;
+	padding: 50px;
+	max-width: 850px;
+	background-color:#fffae8;
+	overflow: hidden;
+}
+
+.image-post {
+	width: 100%;
+}
+
+.text-post {
+	margin: 10px;
+	font-size: 16px;
+	line-height: 25px;
+	float: left;
+	word-break: break-word;
+}
+
+.normal-like-button, .post-like-button {
+	float: left;
+	height: 26px;
+}
+
+.normal-like-button:hover{
+	filter: grayscale(100%);
+}
+
+.normal-like-button:hover {
+	cursor: pointer;
+}
+
+.normal-like-count {
+	float: left;
+	font-size: 12px;
+	margin-top: 8px;
+	margin-left: 10px;
+}
+
+.profile:hover{
+	cursor: pointer;
+}
+
+.comment-likedate-container, .text-post{
+	color: black;
+}
+
+/* for title, like and count of main post */
+.post-header {
+	margin-top: 20px;
+	
+}
+
+.post-title {
+	font-size: 26px;
+	margin-bottom: 15px;
+}
+
+.post-poster-time {
+	float: right;
+	font-size: 12px;
+}
+
+.post-entry {
+	float: right; 
+	background-color: white;
+	width: 100%;
+	padding: 15px;
+	margin-top: 20px;
+	border: 2px solid #ccc;
+}
+
+.view-more{
+	float: right; 
+	color: #6e2500;
+	background-color: #ff884d;
+	width: 100%;
+	padding: 15px;
+	margin-top: 20px;
+	text-align: center;
+	
+	
+}
+
+
+.post-entry:hover{
+	cursor: pointer;
+}
+
+.comment-buttons {
+	size: auto;
+	margin-top: 10px;
+}
+
+.comment-box {
+	width: 100% !important;
+	word-wrap: break-word;
+	overflow: hidden;
+	padding-bottom: 300px !important;
+	padding-top: 10px !important;
+	margin-top: 10px;
+	font-size: 18px !important;
+}
+.title-box{
+	width: 100% !important;
+	word-wrap: break-word;
+	overflow: hidden;
+	padding-bottom: 30px !important;
+	padding-top: 10px !important;
+	margin-top: 10px;
+	font-size: 18px !important;
+}
+.content-box{
+	width: 100% !important;
+	word-wrap: break-word;
+	overflow: hidden;
+	padding-bottom: 100px !important;
+	padding-top: 10px !important;
+	margin-top: 10px;
+	font-size: 16px !important;
+	margin-bottom: 8px;
+}
+.comment-thread {
+	margin-top: 30px;
+	background-color: #ffb787;
+	padding: 20px;
+	width: 100%;
+	overflow: hidden;
+}
+
+.comment-entry {
+	float: right; 
+	background-color: white;
+	width: 100%;
+	padding: 15px;
+}
+
+.comment-entry2 {
+	float: right; 
+	margin-top: 10px;
+	border-left: 5px solid #e34c00;
+	background-color: white;
+	width: 95%;
+	padding: 15px;
+}
+
+.comment-entry3 {
+	float: right; 
+	margin-top: 10px;
+	border-left: 5px solid #e34c00;
+	background-color: white;
+	width: 90%;
+	padding: 15px;
+}
+
+.comment-likedate-container {
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	margin-bottom: 5px;
+}
+
+.comment-reply {
+	float: left;
+	margin-top: 8px;
+	margin-left: 15px;
+	color: #e34c00;
+	font-size: 12px;
+}
+.thread-title{
+	float: left;
+	margin-top: 8px;
+	margin-left: 15px;
+	color: #e34c00;
+	font-size: 16px;
+}
+.ending-margin {
+	margin-top: 40px;
+}
+
+/* Edit Profile/ Home page CSS */
+.upper
+{
+	height: 60px;
+	max-width: 100%;
+}
+.icon
+{
+	object-fit: cover;
+	height: 50px;               
+	float: left;
+	margin-left: 1%;
+}
+
+.icon:hover
+{
+	cursor: pointer;
+}
+
+.search
+{
+	height: 60px;
+	width: 30%;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+}
+.shortcut
+{
+	height: 60px;
+	font-size: 20px;
+	float: left;
+	width: 30%;
+	
+}
+
+
+.shortcutlink
+{
+	width: 90%;
+	height: 15px;
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+.shortcutlink a 
+{
+	padding: 3%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	border-bottom: 5px solid #ffae86;
+	border-radius: 10px;
+	color: #ff7200;
+}
+
+.shortcutlink a:hover
+{
+	color: gray;
+	border-color: gray;
+}
+
+.profile
+{
+	position: relative;
+	height: 60px;
+	width: 10%;
+	background-color: orange;
+	float: right;
+	
+}
+.searchinput
+{
+	width: 75% !important;
+	margin-top: 12px;
+	padding: 15px !important;
+	margin-left: 20px;
+	
+}
+
+.post-upload-image, .submit-post, .searchsubmit
+{
+	padding: 10px !important;
+}
+
+.profile 
+{
+	padding-right: 5px;
+	width: 200px;
+	font-size: 100%;
+	text-align: center;
+	transition: all 0.2s ease-in-out;
+}
+
+.profilepic-display
+{
+	margin-right: 0px;
+	height: 60px;
+	float: left;
+	width: 60px;
+}
+
+.username-div
+{
+	width: auto;
+	height: auto;
+}
+
+.profile:hover
+{
+	background-color: rgb(255, 221, 159);
+	transition: all 0.2s ease-in-out;
+}
+
+.username-display
+{
+	padding-top: 24px;
+	color: #6e2500;
+}
+
+.aboutpage-header
+{
+	margin-bottom: 25px;
+}
+
+.aboutpage-container
+{
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	/*margin: 5%;*/
+	background-color: whitesmoke;
+	display: inline-block;
+	padding: 10px;
+	padding-bottom: 30px;
+	width:800px; 
+	margin-left: 25%;
+	margin-top: 3%;
+}
+
+.aboutpage-list 
+{
+	list-style-position: inside;
+	text-align: left;
+}
+
+.aboutpage-list li
+{
+	font-family: Montserrat !important;
+}
+
+
+/* End of Home page CSS */
+
+
+/* view profile */
+.profile-pic-profile, .profile-pic-editprofile
+{
+	border-radius: 50%;
+	width: 200px;
+	height: 200px;
+	margin: 25px;
+}
+
+.profile-left-container
+{
+	float: left;
+	position: relative;
+}
+
+.profile-right-container
+{
+	float: right;
+	position: relative;
+	right: -60px;
+}
+
+.profile-container
+{
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.username-profile
+{
+	margin-top: 20px;
+}
+
+.quote-header-profile, .bio-header-profile, .recentactivity-header-profile
+{
+	margin: 20px 0px 20px 0px;
+}
+
+.quote-text-profile, .bio-text-profile, .recentactivity-text-profile
+{
+	border: 1px solid gray;
+	border-radius: 10px;
+	padding: 10px;
+	width: 350px;
+	height: 200px;
+	word-break: break-word;
+	white-space: pre-line;
+	
+	/* overflow: hidden;
+	text-overflow: ellipsis; */
+}
+
+
+.favechar-header-profile
+{
+	overflow: hidden;
+	white-space: nowrap;
+	margin-top: 20px;
+}
+
+.favechar-img-profile, .favechar-img-editprofile
+{
+	border-radius: 15%;
+	width: 250px;
+	height: 250px;
+	margin-top: 25px;
+}
+
+.editprofilebtn-viewprofile, .deleteprofilebtn-viewprofile
+{
+	float: right;
+	margin: 15px 150px 50px 50px;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.deleteprofilebtn-viewprofile
+{
+	position: absolute;
+	top: 750px;
+	left: 100px;
+}
+
+.viewpost-btns, .deletepostbtn-viewpost, .deletecommentbtn-viewpost, .editpostbtn-viewpost, .editcommentbtn-viewpost
+{
+	float: right;
+	margin-left: 5px;
+	text-decoration: underline;
+	color: orange !important;
+	
+}
+/*
+.editpostbtn-viewpost
+{
+	margin-right: 5px;
+}
+*/
+.editpostbtn-viewpost:hover, .deletepostbtn-viewpost:hover, .deletecommentbtn-viewpost:hover, .editcommentbtn-viewpost:hover
+{
+	cursor: pointer;
+	color: gray !important;
+}
+
+/* end of view profile */
+
+/* edit profile */
+.savechangesbtn-editprofile
+{
+	float: left;
+	margin: 50px 15px 15px 0px;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.editquote-box, .editbio-box {
+	width: 350px;
+	word-wrap: break-word;
+	padding-bottom: 300px !important;
+	padding-top: 10px !important;
+	margin-top: 10px;
+	background-color: transparent;
+	letter-spacing: normal;
+	border: 1px solid gray;
+	font-size: 100%;
+	overflow: hidden;
+	padding-bottom: 20px !important;
+	height: 200px;
+}
+
+.changeprofilepic-editprofile, .changefavecharpic-editprofile
+{
+	display: none;
+}
+
+/* styles and overrides for hover-on-image for changing pics */
+
+.profilepic-container-editprofile
+{
+	position: relative;
+	width: 200px;
+	height: 200px;
+	margin: 25px;
+}
+
+.favecharpic-container-editprofile
+{
+	position: relative;
+	width: 250px;
+	height: 250px;
+	margin: 25px;
+}
+
+.profile-pic-editprofile, .favechar-img-editprofile
+{
+	margin: auto;
+}
+
+.overlay-editprofile, .overlay-favechar-editprofile
+{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 100%;
+	width: 100%;
+	opacity: 0;
+	transition: .5s ease;
+	background-color: gray;
+	border-radius: 50%;
+}
+
+.overlay-favechar-editprofile
+{
+	border-radius: 15%;
+}
+
+.profilepic-container-editprofile:hover .overlay-editprofile, .favecharpic-container-editprofile:hover .overlay-favechar-editprofile
+{
+	opacity: 0.75;
+	visibility: visible;
+	cursor: pointer;
+}
+
+.overlaytext-editprofile, .overlaytext-favechar-editprofile
+{
+	color: white;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+	text-align: center;
+	font-style: bold;
+}
+
+/* end of edit profile */
+
+::-webkit-scrollbar {
+      width: 12px;
+}
+
+::-webkit-scrollbar-track {
+      background-color: #ff884d;
+}
+ 
+::-webkit-scrollbar-thumb:hover {
+      background-color: #6e2500;
+} 
+::-webkit-scrollbar-thumb {
+      background-color: #e34c00; 
+} 
+ 
+::-webkit-scrollbar-button {
+      background-color: #6e2500;
+}
+ 
+::-webkit-scrollbar-corner {
+      background-color: ff7200;
+}
+
+.comment-box::-webkit-scrollbar {
+	display: none;
+}
