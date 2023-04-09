@@ -7,6 +7,41 @@
         
         <title>CSARCH 2 Simulation Project</title>
         <link rel="stylesheet" type="text/css" media="all" href="public/css/globalstyle.css">
+        <script src = "jquery-3.6.0.js" type="text/javascript"> </script>
+        <script>
+            $(document).ready(function(){
+                $("#submit").click(function()
+                {
+                    document.getElementById("error").innerHTML = "";
+                    var block_size = document.getElementById("block_size").value;
+                    var set_size = document.getElementById("set_size").value;
+                    var MM_memory_size = document.getElementById("MM_memory_size").value;
+                    var MMsize_type = document.getElementById("MMsize_type").value;
+                    var cache_memory_size = document.getElementById("cache_memory_size").value;
+                    var Cachesize_type = document.getElementById("Cachesize_type").value;
+                    var cache_cycle_time = document.getElementById("cache_cycle_time").value;
+                    var memory_cycle_time =  document.getElementById("memory_cycle_time").value;
+                    var program_flow = document.getElementById("program_flow").value;
+                    var validinput = true;
+                    if (block_size == "" || set_size == "" || MM_memory_size == "" ||cache_memory_size == ""  ||cache_cycle_time == "" ||memory_cycle_time == "" ||program_flow == "")
+                    {
+                        var validinput = false;
+                    }
+                    if (validinput == false)
+                    {
+                        document.getElementById("error").innerHTML = "Missing inputs";
+                        document.getElementById("block_size").value = "";
+                        document.getElementById("set_size").value= "";
+                        document.getElementById("MM_memory_size").value= "";
+                        document.getElementById("cache_memory_size").value= "";
+                        document.getElementById("cache_cycle_time").value= "";
+                        document.getElementById("memory_cycle_time").value= "";
+                        document.getElementById("program_flow").value= "";
+                    }
+                });
+            });
+        </script>
+       
     </head>
     <body>
         <div class="main_content">
@@ -18,8 +53,10 @@
             <p>Ong, Ben Kennard</p>
         </div>
         <div id ="form" class="main_content">
-            <form>
                 <table>
+                    <tr>
+                        <td colspan="4"><p id="error"></p></td>
+                    </tr>
                     <tr>
                         <td><label for="block_size">Block Size</label></td>
                         <td><input type="number" min="1" name="block_size" id="block_size"> </td>
@@ -32,7 +69,7 @@
                         <td><label for="MM_memory_size">Main Memory memory size</label></td>
                         <td><input type="number" min="1" name="MM_memory_size" id="MM_memory_size"> </td>
                         <td>
-                            <select id="type">
+                            <select id="MMsize_type">
                                 <option value="blocks" selected>Block
                                 </option>
                                 <option value="words">Word</option>
@@ -43,7 +80,7 @@
                         <td><label for="cache_memory_size">Cache Memory Size</label></td>
                         <td><input type="number" min="1" name="cache_memory_size" id="cache_memory_size"> </td>
                         <td>
-                            <select id="type">
+                            <select id="Cachesize_type">
                                 <option value="blocks" selected>Block
                                 </option>
                                 <option value="words">Word</option>
@@ -58,7 +95,7 @@
                         <td><label for="memory_cycle_time">Memory Cycle Time</label></td>
                         <td><input type="number" min="1" value="10"name="memory_cycle_time" id="memory_cycle_time"> </td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td><lavel>Read Policy</label></td>
                         <td>
                             <select id="read_policy">
@@ -67,7 +104,7 @@
                                 <option value="Load Through">Load Through</option>
                             </select>
                         </td>
-                    </tr>
+                    </tr> -->
                     <tr>
                         <td><label for="program_flow">Sequence of data for flow (add space between number)</label></td>
                         <td><input type="text"name="program_flow" id="program_flow"> </td>
@@ -79,10 +116,40 @@
                         </td>
                         
                     </tr>
+                    <tr>
+                        <td colspan="4"><p id="error"></p></td>
+                    </tr>
                 </table>
-            </form>
-
-
+        </div>
+        <div id ="form" class="main_content">
+            <table>
+            <tr>
+                <td>Output</td>
+            </tr>
+            <tr>
+                <td>Number of Cache Hit</td>
+                <td id="cache_hit"> </td>
+            </tr>
+            <tr>
+                <td>Number of Cache Miss</td>
+                <td id="cache_miss"> </td>
+            </tr>
+            <tr>
+                <td>Miss Penalty</td>
+                <td id="miss_penalty"> </td>
+            </tr>
+            <tr>
+                <td>Average memory access time</td>
+                <td id="average_memory"> </td>
+            </tr>
+            <tr>
+                <td>Total Memory access time</td>
+                <td id="total_memory"> </td>
+            </tr>
+            <tr>
+                <td>Snapshot</td>
+            </tr>
+        </table>
         </div>
     </body>
 </html>
