@@ -65,7 +65,22 @@ $(document).ready(function(){
 
         if (validInput == true)
         {
+            
             //TODO: algorithm for block set associative - MRU
+            // if (MM_size_type == word)
+            // {
+            //     MM_memory_size = MM_memory_size / block_size;
+            // }
+            // if (cache_size_type == word)
+            // {
+            //     cache_size_type = cache_size_type / block_size;
+            // }
+            cache = new Array(set_size);
+            for (i = 0; i < set_size; i++)
+            {
+                cache[i] = [];
+            }
+            sequence = program_flow.split(" ");
         }
     });
 
