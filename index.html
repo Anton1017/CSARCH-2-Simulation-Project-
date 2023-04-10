@@ -15,19 +15,29 @@
        
     </head>
     <body>
-        <div class="title_container">
+        <!-- <div class="title_container">
             <h3>CSARCH 2 Simulation Project: Block-Set Associative MRU</h3>
             <h4>Members</h4>
             <p>Moraña, Anton Louis </p>
             <p>Go, Ryan Jefferson</p>
             <p>Uy, Shane</p>
             <p>Ong, Ben Kennard</p>
-        </div>
+        </div> -->
         <div class="main_content">
+            <div class="left_div_container">
+                <div class="left_div" id="title_container">
+                    <h3>CSARCH 2 Simulation Project: Block-Set Associative MRU</h3>
+                    <h4>Members</h4>
+                    <p>Moraña, Anton Louis </p>
+                    <p>Go, Ryan Jefferson</p>
+                    <p>Uy, Shane</p>
+                    <p>Ong, Ben Kennard</p>
+                </div>
                 <div class="left_div">
                     <table>
                         <tr>
-                            <td colspan="4"><p id="error"></p></td>
+                            <td class="section_title">Input</td>
+                            <td colspan="2" id="error"></td>
                         </tr>
                         <tr>
                             <td><label for="block_size">Block Size</label></td>
@@ -92,41 +102,54 @@
                                 <button id="submit">Submit</button>
                             </td>
                         </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="right_div">
+                <table class="right_table">
+                    <tr>
+                        <td class="section_title">Output</td>
+                    </tr>
+                    <tr>
+                        <td>Number of Cache Hit</td>
+                        <td><input type="number" name="cache_hit" id="cache_hit"></td>
+                    </tr>
+                    <tr>
+                        <td>Number of Cache Miss</td>
+                        <td><input type="number" name="cache_miss" id="cache_miss"></td>
+                    </tr>
+                    <tr>
+                        <td>Miss Penalty</td>
+                        <td><input type="number" name="miss_penalty" id="miss_penalty"></td>
+                    </tr>
+                    <tr>
+                        <td>Average memory access time</td>
+                        <td><input type="number" name="average_memory" id="average_memory"></td>
+                    </tr>
+                    <tr>
+                        <td>Total Memory access time</td>
+                        <td><input type="number" name="total_memory" id="total_memory"></td>
+                    </tr>
+                    <tr>
+                        <td class="textalign_center"><h3>Snapshot</h3></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><textarea class="content-box" wrap="soft" placeholder="" name="textContent"></textarea></td>
+                    </tr>
+                </table>
+                <div class="gen_text">
+                    <table>
                         <tr>
-                            <td colspan="4"><p id="error"></p></td>
+                            <td colspan="2" class="section_title">Generated Text</td>
+                            <td><button id="download">Download as text file</button></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><textarea class="content-box" wrap="soft" placeholder="" name="textContent"></textarea></td>
                         </tr>
                     </table>
                 </div>
-                <div class="right_div">
-                    <table class="right_table">
-                        <!-- <tr>
-                            <td><h2>Output</td>
-                        </tr> -->
-                        <tr>
-                            <td>Number of Cache Hit</td>
-                            <td id="cache_hit"> </td>
-                        </tr>
-                        <tr>
-                            <td>Number of Cache Miss</td>
-                            <td id="cache_miss"> </td>
-                        </tr>
-                        <tr>
-                            <td>Miss Penalty</td>
-                            <td id="miss_penalty"> </td>
-                        </tr>
-                        <tr>
-                            <td>Average memory access time</td>
-                            <td id="average_memory"> </td>
-                        </tr>
-                        <tr>
-                            <td>Total Memory access time</td>
-                            <td id="total_memory"> </td>
-                        </tr>
-                        <tr>
-                            <td>Snapshot</td>
-                        </tr>
-                    </table>
-                </div>
+            </div>
         </div>
     </body>
 </html>

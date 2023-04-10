@@ -53,7 +53,7 @@ input[type="text"],input[type="search"],input[type="email"],input[type="password
 	border: 2px solid #ccc;
 	letter-spacing: 1px;
 	font-size: 12px;
-	height: 25px;
+	height: 30px;
 	width: 100%;
 }
 
@@ -61,7 +61,7 @@ select
 {
 	padding-left: 5px;
 	padding-right: 5px;
-	height: 25px;
+	height: 30px;
 	width: 100%;
 	border-radius: 10px;
 	border: 2px solid #ccc;
@@ -104,9 +104,9 @@ input[type=file]::file-selector-button:hover {
 
 input[type="submit"], button {
 	transition: 0.3s;
-	padding: 12px;
+	padding: 8px;
 	color: white;
-	font-size: 18px;
+	font-size: 14px;
 	background-color: #ff7200;
 	border: none;
 	border-radius: 10px;
@@ -124,6 +124,7 @@ img {
 
 table{
 	padding: 10px;
+	width: 100%;
 }
 
 tr
@@ -156,6 +157,12 @@ td
 	width: 100vw;
 	height:100vh;
 	transition: opacity 1s;
+}
+
+#error {
+	text-align: center;
+	font-size: 16px;
+	color: red
 }
 
 .format_center {
@@ -223,43 +230,11 @@ b{
 	color: green;
 }
 
-.status_msg{
-	height: auto;
-	width: auto;
-	margin: 8px;
-	font-size: 16px;
-}
-
-.login_container {
-	
-	position: relative;
-	padding-top: 8vh;
-	height: 92vh;
-}
-
-.login_container h2 {
-	margin-top: 20px;
-	margin-bottom: 20px;
-	font-size: 20px;
-}
-
-.login_content {
-	margin: auto;
-	padding: 50px;
-	padding-top: 30px;
-	padding-bottom: 25px;
-	height: auto;
-	max-width: 450px;
-	margin-bottom: 0px;
-	background-color: white;
-	border-radius: 20px;
-}
-
 .main_container {
 	position: relative;
 }
 
-.main_content, .comments, .main_content_editprofile 
+.main_content
 {
 	margin: 30px auto;
 	padding: 25px;
@@ -268,31 +243,45 @@ b{
 	border-radius: 10px;
 }
 
-.title_container
+#title_container
 {
-	margin: 30px auto;
-	padding: 30px;
-	max-width: 35%;
-	margin-top: 40px;
-	margin-bottom: 0px;
-	background-color: #FFF2CC;
-	border: solid 15px #F4B183;
+	font-size: 80%;
+	padding: 20px;
+	margin-bottom: 30px;
+}
+
+.section_title
+{
+	padding-bottom: 10px;
 	border-radius: 10px;
+	font-size: 22px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.textalign_center
+{
+	text-align: center;
 }
 
 .left_div
 {
 	background-color: #FFF2CC;
-	float: left;
-	width: 33%;
+	
 	border-radius: 10px;
+}
+
+.left_div_container
+{
+	float: left;
+	width: 38%;
 }
 
 .right_div
 {
 	background-color: #FFF2CC;
 	float: right;
-	width: 65%;
+	width: 60%;
 	border-radius: 10px;
 	display: block;
 	overflow: auto;
@@ -300,7 +289,14 @@ b{
 
 .right_table
 {
+	width: 45%;
 	float: left;
+}
+
+.gen_text
+{
+	float: right;
+	width: 55%;
 }
 
 .post-thread, .main_content_profile
@@ -420,12 +416,11 @@ b{
 .content-box{
 	width: 100% !important;
 	word-wrap: break-word;
-	overflow: hidden;
+	overflow: auto;
 	padding-bottom: 100px !important;
 	padding-top: 10px !important;
-	margin-top: 10px;
-	font-size: 16px !important;
 	margin-bottom: 8px;
+	min-height: 270px;
 }
 .comment-thread {
 	margin-top: 30px;

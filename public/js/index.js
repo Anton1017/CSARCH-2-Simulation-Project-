@@ -50,7 +50,7 @@ $(document).ready(function(){
         document.getElementById("program_flow").value= "";
     }
 
-    
+
     $("#submit").click(function()
     {
         resetError();
@@ -60,7 +60,7 @@ $(document).ready(function(){
         if (checkIfEmpty(input))
         {
             var validInput = false;
-            document.getElementById("error").innerHTML = "Missing inputs";
+            document.getElementById("error").innerHTML = "ERROR: Missing inputs";
         }
 
         if (validInput == true)
@@ -71,6 +71,7 @@ $(document).ready(function(){
 
     $("#reset").click(function()
     {
+        resetError();
         resetInput();
     });
 });
