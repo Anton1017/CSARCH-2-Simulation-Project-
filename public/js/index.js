@@ -138,25 +138,30 @@ $(document).ready(function(){
 			}
 		}
 
+		//convert to MM block if MM word address is given
+		if(program_flow_type == "words"){
+			program_flow.forEach((addr, index) => {
+				program_flow[index] = Math.floor(addr / block_size);
+			});
+		}
+
+		console.log("Program flow: ", program_flow, "\n");
+
 		for (var i = 0; i < program_flow.length; i++) {
-			var memory_address = parseInt(program_flow[i]);
-			console.log("Program Flow Current Number: " + memory_address);
+			var MM_block = parseInt(program_flow[i]);
+			console.log("Program Flow Current Number: " + MM_block);
 			
-			if (program_flow_type == "words"){
-				var set_index = (Math.floor(memory_address / block_size)) % no_of_sets;
-			}
-			else {
-				var set_index = (memory_address) % no_of_sets;
-			}
+			
+			var set_index = (MM_block) % no_of_sets;
 
 			var hit = false;
 	
 			for (var j = 0; j < cache_memory[set_index].length; j++) {
-				if (cache_memory[set_index][j].address == memory_address) {
+				if (cache_memory[set_index][j].address == MM_block) {
 					num_cache_hits++;
 					hit = true;
 					cache_memory[set_index][j].timeStamp = i;
-					cache_memory[set_index][j].address = memory_address;
+					cache_memory[set_index][j].address = MM_block;
 					break;
 				}
 			}
@@ -177,7 +182,7 @@ $(document).ready(function(){
 
 				cache_memory[set_index].push({
 					timeStamp: i,
-					address: memory_address
+					address: MM_block
 				});
 			}
 		}
@@ -191,7 +196,7 @@ $(document).ready(function(){
 		for (var i = 0; i < no_of_sets; i++) {
 			for (var j = 0; j < cache_memory[i].length; j++) {
 				console.log("Set Size: " + no_of_sets + "  cache memory length: " + cache_memory[i].length);
-				cache_memory_snapshot += "Set " + i + ", Block " + j + " Address: " + cache_memory[i][j].address + "\n";
+				cache_memory_snapshot += "(Set " + i + ", Block " + j + ") <= MM Block: " + cache_memory[i][j].address + "\n";
 			}
 		}
 
@@ -233,7 +238,12 @@ $(document).ready(function(){
 
         if (validInput == true)
         {
-            blockSetAssociativeMRU(input);
+			try{
+				blockSetAssociativeMRU(input);
+			}
+            catch(err){
+				document.getElementById("error").innerHTML = "ERROR: Invalid input(s)";
+			}
             //TODO: algorithm for block set associative - MRU
             // if (MM_size_type == word)
             // {
