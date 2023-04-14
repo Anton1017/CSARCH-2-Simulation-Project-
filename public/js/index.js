@@ -88,8 +88,6 @@ $(document).ready(function(){
 		for (var i = 0; i < program_flow.length; i++) {
 			var memory_address = parseInt(program_flow[i]);
 			console.log("Program Flow Current Number: " + memory_address);
-	
-			var tag = Math.floor(memory_address / (set_size * block_size));
 			
 			if (program_flow_type == "words"){
 				var set_index = (Math.floor(memory_address / block_size)) % no_of_sets;
@@ -101,7 +99,7 @@ $(document).ready(function(){
 			var hit = false;
 	
 			for (var j = 0; j < cache_memory[set_index].length; j++) {
-				if (cache_memory[set_index][j].tag == tag) {
+				if (cache_memory[set_index][j].address == memory_address) {
 					num_cache_hits++;
 					hit = true;
 					cache_memory[set_index][j].timeStamp = i;
@@ -113,9 +111,7 @@ $(document).ready(function(){
 			if (!hit) {
 				num_cache_misses++;
 	
-				if (cache_memory[set_index].length == 0) {
-					miss_penalty += memory_cycle_time;
-				} else {
+				if (cache_memory[set_index].length != 0) {
 					var maxIndex = 0;
 	
 					for (var j = 0; j < cache_memory[set_index].length; j++) {
@@ -123,27 +119,26 @@ $(document).ready(function(){
 							maxIndex = j;
 						}
 					}
-	
-					miss_penalty += memory_cycle_time + cache_cycle_time;
 					cache_memory[set_index].splice(maxIndex, 1);
 				}
 
 				cache_memory[set_index].push({
-					tag: tag,
 					timeStamp: i,
 					address: memory_address
 				});
 			}
 		}
 
-		var average_memory_access_time = (num_cache_hits * cache_cycle_time + num_cache_misses * (miss_penalty + cache_cycle_time)) / program_flow.length;
-		total_memory_access_time = num_cache_hits * cache_cycle_time + num_cache_misses * miss_penalty;
+		var hit_rate = num_cache_hits / (num_cache_hits + num_cache_misses);
+		miss_penalty = (2 * cache_cycle_time) + (block_size * memory_cycle_time);
+		var average_memory_access_time = (hit_rate * cache_cycle_time) + ((1 - hit_rate) * miss_penalty);
+		total_memory_access_time = (num_cache_hits * cache_cycle_time * block_size) + (num_cache_misses * (cache_cycle_time + memory_cycle_time) * block_size) + (num_cache_misses * cache_cycle_time);
 	
 		var cache_memory_snapshot = "";
 		for (var i = 0; i < no_of_sets; i++) {
 			for (var j = 0; j < cache_memory[i].length; j++) {
 				console.log("Set Size: " + no_of_sets + "  cache memory length: " + cache_memory[i].length);
-				cache_memory_snapshot += "Set " + i + ", Block " + j + ": Tag " + cache_memory[i][j].tag + " Address: " + cache_memory[i][j].address + "\n";
+				cache_memory_snapshot += "Set " + i + ", Block " + j + " Address: " + cache_memory[i][j].address + "\n";
 			}
 		}
 
