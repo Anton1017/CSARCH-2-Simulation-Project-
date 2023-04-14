@@ -12,6 +12,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,400;1,100&display=swap" rel="stylesheet">
         <script src = "jquery-3.6.0.js" type="text/javascript"> </script>
         <script src = "public/js/index.js" type="text/javascript"> </script>
+        <script type="module" src="public/js/FileSaver.js"></script>
        
     </head>
     <body>
@@ -113,29 +114,29 @@
                     </tr>
                     <tr>
                         <td>Number of Cache Hit</td>
-                        <td><input type="number" name="cache_hit" id="cache_hit"></td>
+                        <td><input type="text" name="cache_hit" id="cache_hit"></td>
                     </tr>
                     <tr>
                         <td>Number of Cache Miss</td>
-                        <td><input type="number" name="cache_miss" id="cache_miss"></td>
+                        <td><input type="text" name="cache_miss" id="cache_miss"></td>
                     </tr>
                     <tr>
                         <td>Miss Penalty</td>
-                        <td><input type="number" name="miss_penalty" id="miss_penalty"></td>
+                        <td><input type="text" name="miss_penalty" id="miss_penalty"></td>
                     </tr>
                     <tr>
                         <td>Average memory access time</td>
-                        <td><input type="number" name="average_memory" id="average_memory"></td>
+                        <td><input type="text" name="average_memory" id="average_memory"></td>
                     </tr>
                     <tr>
                         <td>Total Memory access time</td>
-                        <td><input type="number" name="total_memory" id="total_memory"></td>
+                        <td><input type="text" name="total_memory" id="total_memory"></td>
                     </tr>
                     <tr>
                         <td class="textalign_center"><h3>Snapshot</h3></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><textarea class="content-box" wrap="soft" placeholder="" name="textContent"></textarea></td>
+                        <td colspan="2"><textarea class="content-box" wrap="soft" placeholder="" name="textContent", id="snapshot"></textarea></td>
                     </tr>
                 </table>
                 <div class="gen_text">
@@ -145,7 +146,7 @@
                             <td><button id="download">Download as text file</button></td>
                         </tr>
                         <tr>
-                            <td colspan="3"><textarea class="content-box" wrap="soft" placeholder="" name="textContent"></textarea></td>
+                            <td colspan="3"><textarea class="content-box" wrap="soft" placeholder="" name="textContent", id="gen_text"></textarea></td>
                         </tr>
                     </table>
                 </div>

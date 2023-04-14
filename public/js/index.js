@@ -1,4 +1,12 @@
 $(document).ready(function(){
+	document.getElementById("cache_hit").setAttribute('readonly', true);
+	document.getElementById("cache_miss").setAttribute('readonly', true);
+	document.getElementById("miss_penalty").setAttribute('readonly', true);
+	document.getElementById("average_memory").setAttribute('readonly', true);
+	document.getElementById("total_memory").setAttribute('readonly', true);
+	document.getElementById("snapshot").setAttribute('readonly', true);
+	document.getElementById("gen_text").setAttribute('readonly', true);
+
     var input = {
         block_size: "",
         set_size: "",
@@ -12,6 +20,13 @@ $(document).ready(function(){
         program_flow_type: ""
     }
 
+	function downloadTxt(){
+		var blob = new Blob([document.getElementById("gen_text").innerHTML], {
+			type: "text/plain;charset=utf-8;",
+		});
+		saveAs(blob, "result.txt");
+	}
+
     function getInput(obj){
         obj.block_size = document.getElementById("block_size").value;
         obj.set_size = document.getElementById("set_size").value;
@@ -24,6 +39,44 @@ $(document).ready(function(){
         obj.program_flow = document.getElementById("program_flow").value;
         obj.program_flow_type = document.getElementById("program_flow_type").value;
     }
+
+	function setOutput(obj){
+		document.getElementById("cache_hit").setAttribute('readonly', false);
+		document.getElementById("cache_miss").setAttribute('readonly', false);
+		document.getElementById("miss_penalty").setAttribute('readonly', false);
+		document.getElementById("average_memory").setAttribute('readonly', false);
+		document.getElementById("total_memory").setAttribute('readonly', false);
+		document.getElementById("snapshot").setAttribute('readonly', false);
+		document.getElementById("gen_text").setAttribute('readonly', false);
+
+		document.getElementById("cache_hit").value = obj.num_cache_hits
+		document.getElementById("cache_miss").value = obj.num_cache_misses
+		document.getElementById("miss_penalty").value = obj.miss_penalty
+		document.getElementById("average_memory").value = obj.average_memory_access_time
+		document.getElementById("total_memory").value = obj.total_memory_access_time
+		document.getElementById("snapshot").innerHTML = obj.cache_memory_snapshot
+
+		var genTxt = "";
+		genTxt = genTxt.concat(	"Cache hits: ", obj.num_cache_hits, "\n",
+						"Cache misses: ", obj.num_cache_misses, "\n",
+						"Miss penalty: ", obj.miss_penalty, "\n",
+						"Average memory access time: ", obj.average_memory_access_time, "\n",
+						"Total memory access time: ", obj.total_memory_access_time, "\n",
+						"\n",
+						"Cache memory snapshot:", "\n",
+						obj.cache_memory_snapshot
+		);
+		// console.log(genTxt);
+		document.getElementById("gen_text").innerHTML = genTxt;
+		
+		document.getElementById("cache_hit").setAttribute('readonly', true);
+		document.getElementById("cache_miss").setAttribute('readonly', true);
+		document.getElementById("miss_penalty").setAttribute('readonly', true);
+		document.getElementById("average_memory").setAttribute('readonly', true);
+		document.getElementById("total_memory").setAttribute('readonly', true);
+		document.getElementById("snapshot").setAttribute('readonly', true);
+		document.getElementById("gen_text").setAttribute('readonly', true);
+	}
 
     function resetError(){
         document.getElementById("error").innerHTML = "";
@@ -150,15 +203,21 @@ $(document).ready(function(){
 			total_memory_access_time: total_memory_access_time,
 			cache_memory_snapshot: cache_memory_snapshot
 		};
+
+		setOutput(output);
 	
 		// Output results
-		console.log("Cache hits: " + num_cache_hits);
-		console.log("Cache misses: " + num_cache_misses);
-		console.log("Miss penalty: " + miss_penalty);
-		console.log("Total memory access time: " + total_memory_access_time);
-		console.log("Average memory access time: " + average_memory_access_time);
-		console.log(cache_memory_snapshot);
+		// console.log("Cache hits: " + num_cache_hits);
+		// console.log("Cache misses: " + num_cache_misses);
+		// console.log("Miss penalty: " + miss_penalty);
+		// console.log("Total memory access time: " + total_memory_access_time);
+		// console.log("Average memory access time: " + average_memory_access_time);
+		// console.log(cache_memory_snapshot);
 	}
+
+	$("#download").click(function(){
+		downloadTxt();
+	});
 
     $("#submit").click(function()
     {
