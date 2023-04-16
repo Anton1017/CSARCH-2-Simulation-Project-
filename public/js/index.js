@@ -114,10 +114,57 @@ $(document).ready(function(){
 		var memory_cycle_time = parseInt(input.memory_cycle_time);
 		var program_flow = input.program_flow.split(" ");
 		var program_flow_type = input.program_flow_type;
+		var invalidMemSizeError = "ERROR: Program flow entry cannot exceed MM memory size.";
+		var invalidProgramFlow = "ERROR: Invalid program flow.";
 		
+		console.log(program_flow);
+		//Error-checking for invalid program flow values
+		program_flow.forEach((entry, index) => {
+			if(!Number.isInteger(parseInt(entry))){
+				throw invalidProgramFlow; 
+			};
+		});
+
+		//Error-checking for mem size mismatch between MM and program flow
 		if (MM_size_type == "words") {
-			MM_memory_size = MM_memory_size / block_size;
+			if(program_flow_type == "words"){
+				program_flow.forEach((addr, index) => {
+					if(addr > MM_memory_size-1){
+						throw invalidMemSizeError; 
+					};
+				});
+			}
+			else{
+				MM_memory_size = MM_memory_size / block_size;
+				if(!Number.isInteger(MM_memory_size)){
+					throw "ERROR: MM memory size (in words) and block size are not divisible.";
+				}
+				program_flow.forEach((addr, index) => {
+					if(addr > MM_memory_size-1){
+						throw invalidMemSizeError; 
+					};
+				});
+			}
 		}
+		else{
+			if(program_flow_type == "words"){
+				var mem_size_word = MM_memory_size * block_size;
+				program_flow.forEach((addr, index) => {
+					if(addr > mem_size_word-1){
+						throw invalidMemSizeError; 
+					};
+				});
+			}
+			else{
+				program_flow.forEach((block, index) => {
+					if(block > MM_memory_size-1){
+						throw invalidMemSizeError; 
+					};
+				});
+			}
+		}
+
+		
 	
 		if (cache_size_type == "words") {
 			cache_memory_size = cache_memory_size / block_size;
@@ -137,6 +184,8 @@ $(document).ready(function(){
 				cache_memory[i][j] = [];
 			}
 		}
+
+		console.log(cache_memory);
 
 		//convert to MM block if MM word address is given
 		if(program_flow_type == "words"){
@@ -176,17 +225,24 @@ $(document).ready(function(){
 						if (cache_memory[set_index][j].timeStamp > cache_memory[set_index][maxIndex].timeStamp) {
 							maxIndex = j;
 						}
+						// if cache memory block location is empty
+						if (cache_memory[set_index][j].length == 0){
+							maxIndex = j;
+							break;
+						}
 					}
-					cache_memory[set_index].splice(maxIndex, 1);
+					cache_memory[set_index].splice(maxIndex, 1, {timeStamp: i,
+					address: MM_block});
 				}
 
-				cache_memory[set_index].push({
-					timeStamp: i,
-					address: MM_block
-				});
+				// cache_memory[set_index].push({
+				// 	timeStamp: i,
+				// 	address: MM_block
+				// });
 			}
 		}
 
+		console.log(cache_memory);
 		var hit_rate = num_cache_hits / (num_cache_hits + num_cache_misses);
 		miss_penalty = (2 * cache_cycle_time) + (block_size * memory_cycle_time);
 		var average_memory_access_time = (hit_rate * cache_cycle_time) + ((1 - hit_rate) * miss_penalty);
@@ -242,7 +298,7 @@ $(document).ready(function(){
 				blockSetAssociativeMRU(input);
 			}
             catch(err){
-				document.getElementById("error").innerHTML = "ERROR: Invalid input(s)";
+				document.getElementById("error").innerHTML = err;
 			}
             //TODO: algorithm for block set associative - MRU
             // if (MM_size_type == word)
